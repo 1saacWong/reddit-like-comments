@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Links</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @links.each do |link|%>
+      <tr>
+        <td><%= link_to link.heading, link %></td>
+        <td>By <%= link.username %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Link', new_link_path %>

@@ -1,0 +1,32 @@
+
+<%comments.each do|comment|%>
+  <table class='thumbnail' style='width:100%; margin:0;'>
+    <tbody>
+      <tr>
+        <td class='col-xs-8'>
+          <%if comment.commentable.class.name == 'Comment'%>
+            <a href='#'>@<%= comment.commentable.username%></a>
+          <%end%>
+          <%=comment.comment%>
+        </td>
+        <td class='col-xs-4'>
+          <%=comment.username%>
+          <%=time_ago_in_words(@link.created_at)%>
+        </td>
+      </tr>
+      <tr>
+        <%= render 'comments/form', commentable:comment, newcomment:@newcomment%>
+      </tr>
+    </tbody>
+  </table>
+  <ul>
+    <%if comment.comments.length != 0%>
+      <a class="toggle">+ Expand</a>
+      <div class='comment collapse'>
+        <%= render 'comments/comments', link:@link, comments:comment.comments, newcomment: @newcomment%>
+      </div>
+    <%end%>
+  </ul>
+
+
+<%end%>

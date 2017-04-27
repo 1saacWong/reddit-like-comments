@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+<table class='thumbnail' style='width:100%'>
+  <thead>
+    <tr>
+      <th colspan="3"><%=@link.heading%></th>
+      <th>
+        <%= link_to 'Edit', edit_link_path(@link) %>
+      </th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td class='col-xs-8'>
+        <a href='<%=@link.link%>'>Link</a><br />
+        <%=@link.description%>
+      </td>
+      <td class='col-xs-4' >
+        <%=@link.username%>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <%=time_ago_in_words(@link.created_at)%>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<%= render 'comments/comments', link:@link, comments:@comments, newcomment:@newcomment%>
+
+<%= render 'comments/form', commentable:@link, newcomment:@newcomment%>
+
+<%= link_to 'Back', links_path %>
